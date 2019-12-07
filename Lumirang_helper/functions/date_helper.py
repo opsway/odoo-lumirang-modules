@@ -3,7 +3,7 @@ import operator
 
 YEAR_MONTHS = 12
 _OP = {'>': operator.gt, '>=': operator.ge, '<': operator.lt, '<=': operator.le, '=': operator.eq, '!=': operator.ne}
-_BEGINNING_OF_TIME = date(year=1, month=1, day=1)
+BEGINNING_OF_TIME = date(year=1, month=1, day=1)
 
 
 def diff_month(d1, d2):
@@ -16,4 +16,5 @@ def compare_dates_non_strict(date1, oper, date2):
     if oper not in _OP.keys():
         raise ValueError("Unacceptable operator {}".format(oper))
     fn = _OP[oper]
-    return fn(date1 or _BEGINNING_OF_TIME, date2 or _BEGINNING_OF_TIME)
+    return fn(date1 or BEGINNING_OF_TIME, date2 or BEGINNING_OF_TIME)
+
