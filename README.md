@@ -1,1 +1,3 @@
-# odoo-lumirang-modules
+# Lumirang common modules
+
+## Lumirang helper
