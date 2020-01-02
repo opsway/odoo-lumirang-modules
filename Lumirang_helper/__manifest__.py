@@ -10,7 +10,7 @@
     'author': "Ed Chu",
     'website': "http://www.lumirang.com",
     'category': "Web",
-    'version': "1.0",
+    'version': "1.0.1",
 
     'depends': [],
     'sequence': 0,
