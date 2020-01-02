@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_users_form_partner" model="ir.ui.view">
+            <field name="name">res.users.form.partner</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//h1" position="replace">
+                    <group>
+                        <field name="first_name" placeholder="First name" required="1"/>
+                        <field name="last_name" placeholder="Last name" required="1"/>
+                    </group>
+                </xpath>
+                <xpath expr="//h2" position="replace">
+                    <group>
+                        <field name="login" string="Email Address"/>
+                    </group>
+                </xpath>
+                <label for="name" position="replace"/>
+                <label for="login" position="replace"/>
+            </field>
+        </record>
+    </data>
+</odoo>

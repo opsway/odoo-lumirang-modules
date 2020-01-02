@@ -1,0 +1,3 @@
+[bandit]
+targets: Lumirang_helper,user_full_name
+exclude: Lumirang_helper/tests,user_full_name/tests
