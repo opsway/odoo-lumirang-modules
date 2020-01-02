@@ -21,7 +21,7 @@ def diff_month(d1: date, d2: date) -> int:
     return (d1.year - d2.year) * YEAR_MONTHS + d1.month - d2.month
 
 
-def compare_dates_non_strict(date1: Union[date, False, None], op: str, date2: Union[date, False, None]) -> int:
+def compare_dates_non_strict(date1: Union[date, bool, None], op: str, date2: Union[date, bool, None]) -> int:
     """
     Make a comparison between two dates. Accepts false in place of any date, casts it to the minimal date possible.
     :param date1: first date object, None or False.
