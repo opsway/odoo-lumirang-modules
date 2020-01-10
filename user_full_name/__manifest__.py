@@ -12,8 +12,8 @@
     'author': "Maksym K",
     'website': "http://www.lumirang.com",
     'category': 'Users',
-    'version': '0.1',
-
+    'version': "13.0.1.0",
+    'license': "Other proprietary",
     'depends':  ['contacts'],
     'data': [
         'views/res_users.xml',
