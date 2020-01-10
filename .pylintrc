@@ -1,0 +1,9 @@
+[MASTER]
+load-plugins=pylint_odoo
+
+[MESSAGES CONTROL]
+disable=missing-readme,missing-docstring,line-too-long,manifest-required-author,no-utf8-coding-comment
+
+[BASIC]
+method-rgx=(([a-z_][a-z0-9_]{2,30})|(setUp)|(tearDown))$
+good-names=x, y, z, op, fn

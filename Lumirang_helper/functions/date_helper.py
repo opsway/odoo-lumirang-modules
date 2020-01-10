@@ -14,11 +14,11 @@ _OP = {
 BEGINNING_OF_TIME = date(year=1, month=1, day=1)
 
 
-def diff_month(d1: date, d2: date) -> int:
+def diff_month(date1: date, date2: date) -> int:
     """
     Calculate number of months between two dates.
     """
-    return (d1.year - d2.year) * YEAR_MONTHS + d1.month - d2.month
+    return (date1.year - date2.year) * YEAR_MONTHS + date1.month - date2.month
 
 
 def compare_dates_non_strict(date1: Union[date, bool, None], op: str, date2: Union[date, bool, None]) -> int:
