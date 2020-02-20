@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="user_view" model="ir.ui.view">
+            <field name="name">res.users.view</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tz']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="user_view_admin" model="ir.ui.view">
+            <field name="name">res.users.view_admin</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tz']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+    <data>
+        <record id="user_view" model="ir.ui.view">
+            <field name="name">res.users.view</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tz']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="user_view_admin" model="ir.ui.view">
+            <field name="name">res.users.view_admin</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tz']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
