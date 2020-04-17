@@ -36,7 +36,7 @@ def choices_data(model) -> Tuple[List[Choice], Dict[str, Choice], Dict[int, Choi
     :param model: Odoo model
     :return: choice by ext id and choice by resource id
     """
-    all_choices = model.search([]).sorted('name')
+    all_choices = model.search([])
     # dict with key as a complaint id, and value as a complaint external id local part.
     choice_ext_ids = {k: v.split(".")[1] for k, v in all_choices.get_external_id().items()}
     choices = [Choice(x.id, choice_ext_ids[x.id], x.name) for x in all_choices]
@@ -93,6 +93,9 @@ class Many2manyChoices(fields.Many2many):
         if self.choices_data is None:
             all_choices, refs, _ = choices_data(env[self.comodel_name])
             choices = self.choices
+            if not all_choices:
+                # happens during module installation. Data is not yet installed, just empty result will suffice
+                return []
             if not choices:
                 choices = [x.ref for x in all_choices]
             self.choices_data = tuple(refs[x] for x in choices)
