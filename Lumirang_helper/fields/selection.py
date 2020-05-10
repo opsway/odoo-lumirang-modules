@@ -32,5 +32,5 @@ class SelectionStates:
 
     @classmethod
     def states(cls):
-        states = [getattr(cls, x) for x in cls.__dict__.keys() if cls._VALID_STATE_REGEX.match(x)]
+        states = (getattr(cls, x) for x in cls.__dict__ if cls._VALID_STATE_REGEX.match(x))
         return [(x, x.string) for x in states]
