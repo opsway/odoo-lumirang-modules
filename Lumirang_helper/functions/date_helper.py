@@ -1,4 +1,5 @@
-from datetime import date
+from calendar import monthrange
+from datetime import date, datetime
 import operator
 from typing import Union
 
@@ -33,3 +34,13 @@ def compare_dates_non_strict(date1: Union[date, bool, None], op: str, date2: Uni
         raise ValueError("Unacceptable operator {}".format(op))
     fn = _OP[op]
     return fn(date1 or BEGINNING_OF_TIME, date2 or BEGINNING_OF_TIME)
+
+
+def last_date_of_month(month: datetime) -> datetime:
+    """
+    Return a datetime object pointing to the last day of the current month of the input datetime object.
+    :param month:
+    :return:
+    """
+    _, last_day = monthrange(month.year, month.month)
+    return month.replace(day=last_day)
