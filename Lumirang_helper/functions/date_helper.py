@@ -44,3 +44,12 @@ def last_date_of_month(month: datetime) -> datetime:
     """
     _, last_day = monthrange(month.year, month.month)
     return month.replace(day=last_day)
+
+
+def first_date_of_month(month: datetime) -> datetime:
+    """
+    Return a datetime object pointing to the first day of the current month of the input datetime object.
+    :param month:
+    :return:
+    """
+    return month.replace(day=1)
