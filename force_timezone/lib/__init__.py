@@ -1,1 +1,1 @@
-from . import timezone
+from . import timezone, fields
