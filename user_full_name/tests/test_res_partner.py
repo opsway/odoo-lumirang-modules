@@ -1,6 +1,6 @@
 from odoo.tests import tagged, TransactionCase
 
-from ..models.res_partner import format_name
+from ..lib.format import format_name
 
 
 @tagged("first_last_name")
