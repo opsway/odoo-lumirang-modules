@@ -1,17 +1,7 @@
-from typing import Union
-
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
-_NAME_FMT = "{first} {last}"
-
-
-def format_name(first: Union[str, bool, None], last: Union[str, bool, None]) -> str:
-    if not last:
-        return first or ""
-    if not first:
-        return last or ""
-    return _NAME_FMT.format(first=first, last=last)
+from ..lib.format import format_name
 
 
 class ResPartner(models.Model):
