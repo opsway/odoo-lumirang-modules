@@ -7,4 +7,10 @@
         </xpath>
     </template>
 
+    <template id="assets_common" name="assets_common" inherit_id="web.assets_common">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/force_timezone/static/lib/moment-timezone-with-data.js"/>
+        </xpath>
+    </template>
+
 </odoo>
