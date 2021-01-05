@@ -1,7 +1,7 @@
 from calendar import monthrange
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 import operator
-from typing import Union
+from typing import Union, Tuple
 
 YEAR_MONTHS = 12
 _OP = {
@@ -53,3 +53,17 @@ def first_date_of_month(month: datetime) -> datetime:
     :return:
     """
     return month.replace(day=1)
+
+
+COMPONENTS_12AM = (
+    'hour',
+    'minute',
+    'second',
+    'microsecond',
+)
+
+
+def adjust_12am(d: datetime, components: Tuple[str] = COMPONENTS_12AM) -> datetime:
+    if all(getattr(d, x) == 0 for x in components):
+        return datetime(year=d.year, month=d.month, day=d.day, tzinfo=d.tzinfo) - timedelta(microseconds=1)
+    return d
