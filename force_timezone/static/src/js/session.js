@@ -19,8 +19,7 @@ odoo.define("force_timezone.session", function (require) {
                 date = date.clone();
             }
             date.tz(this.force_timezone);
-            let result = (date.clone().tz("UTC", true) - date) / 60000;
-            return result;
+            return (date.clone().tz("UTC", true) - date) / 60000;
             // utcOffset() gives wrong result:
             // let tz = moment.tz.zone(this.force_timezone);
             // return -tz.utcOffset(date.unix());
