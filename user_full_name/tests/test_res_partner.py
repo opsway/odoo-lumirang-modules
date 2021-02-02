@@ -18,6 +18,18 @@ class TestPartner(TransactionCase):
         p.write({'first_name': last, 'last_name': first})
         self.assertEqual(p.name, format_name(last, first))
 
+    def test_partner_with_name(self):
+        first = "1"
+        last = "2"
+        p = self.env['res.partner'].create({
+            'name': "{} {}".format(first, last),
+            'email': "email",
+        })
+        self.assertEqual(p.name, format_name(first, last))
+
+        p.write({'first_name': last, 'last_name': first})
+        self.assertEqual(p.name, format_name(last, first))
+
     def test_company(self):
         name = "name"
         name2 = "name2"

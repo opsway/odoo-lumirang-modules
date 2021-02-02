@@ -38,3 +38,16 @@ class TestUsers(TransactionCase):
 
         self.user.partner_id = partner
         self.assertEqual(self.user.name, format_name(partner_first, partner_last))
+
+    def test_partner_with_name(self):
+        partner_first = "p1"
+        partner_last = "p2"
+        self.assertNotEqual(partner_first, self.first)
+        self.assertNotEqual(partner_last, self.last)
+        partner = self.env['res.partner'].create({
+            'name': "{} {}".format(partner_first, partner_last),
+            'email': "email",
+        })
+
+        self.user.partner_id = partner
+        self.assertEqual(self.user.name, format_name(partner_first, partner_last))

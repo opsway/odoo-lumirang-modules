@@ -32,4 +32,8 @@ class ResPartner(models.Model):
                 values['name'] = format_name(first_name, last_name)
             else:
                 raise ValidationError("First and last names are required")
+        elif not values.get('first_name') and not values.get('last_name'):
+            names = values['name'].split(" ", 1)
+            values['first_name'] = names[0]
+            values['last_name'] = names[-1]
         return super(ResPartner, self).create(values)
