@@ -16,8 +16,6 @@
     'license': "Other proprietary",
     'depends':  ['contacts'],
     'data': [
-        'views/res_users.xml',
-        'views/res_partner.xml',
         ],
     'sequence': 2,
     'application': True,

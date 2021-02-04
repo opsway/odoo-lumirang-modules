@@ -4,8 +4,8 @@ from odoo.exceptions import ValidationError
 from ..lib.format import format_name
 
 
-class ResPartner(models.Model):
-    _inherit = 'res.partner'
+class FullNameMixin(models.AbstractModel):
+    _name = 'full.name.mixin'
 
     first_name = fields.Char(string="First name")
     last_name = fields.Char(string="Last name")
@@ -36,4 +36,4 @@ class ResPartner(models.Model):
             names = values['name'].split(" ", 1)
             values['first_name'] = names[0]
             values['last_name'] = names[-1]
-        return super(ResPartner, self).create(values)
+        return super().create(values)

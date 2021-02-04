@@ -1,8 +1,9 @@
 from odoo import api, models, fields
 
 
-class ResUsers(models.Model):
-    _inherit = 'res.users'
+# This model requires partner with the 'full.name.mixin' in the inheritance list
+class FullNameUsers(models.AbstractModel):
+    _name = 'full.name.user'
 
     first_name = fields.Char(string="First name", related='partner_id.first_name', inherited=True, readonly=False)
     last_name = fields.Char(string="Last name", related='partner_id.last_name', inherited=True, readonly=False)
@@ -14,7 +15,7 @@ class ResUsers(models.Model):
 
     @api.model
     def create(self, values):
-        res = super(ResUsers, self).create(values)
+        res = super().create(values)
         if res.first_name:
             res.partner_id.write({
                 'last_name': res.last_name,
