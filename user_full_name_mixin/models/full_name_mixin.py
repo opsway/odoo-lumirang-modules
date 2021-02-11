@@ -21,6 +21,7 @@ class FullNameMixin(models.AbstractModel):
         for partner in self:
             partner.first_name, partner.last_name = decompose_name(partner.name)
 
+    @api.model
     def create(self, values: dict):
         if not values.get('name'):
             last_name = values.get('last_name')
