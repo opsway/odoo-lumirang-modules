@@ -100,3 +100,6 @@ class Many2manyChoices(fields.Many2many):
                 choices = [x.ref for x in all_choices]
             self.choices_data = tuple(refs[x] for x in choices)
         return self.choices_data
+
+    def choices_info(self, env) -> List[Choice]:
+        return self._description_choices(env)
