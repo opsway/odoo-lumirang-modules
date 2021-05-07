@@ -15,5 +15,5 @@ def decompose_name(name: str) -> Tuple[str, str]:
     """
     @return (first_name, last_name,)
     """
-    names = name.split(" ", 1)
-    return names[0], names[1] if len(names) > 1 else ""
+    names = name.split(" ")
+    return " ".join(names[0:-1]), names[-1] if len(names) > 1 else ""
