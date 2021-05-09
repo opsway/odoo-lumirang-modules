@@ -23,15 +23,9 @@ class FullNameMixin(models.AbstractModel):
 
     @api.model
     def create(self, values: dict):
-        if not values.get('name'):
-            last_name = values.get('last_name')
-            first_name = values.get('first_name')
-            if first_name and last_name:
-                values['name'] = format_name(first_name, last_name)
-            else:
-                raise ValidationError("First and last names are required")
-        elif not values.get('first_name') and not values.get('last_name'):
-            names = decompose_name(values['name'])
-            values['first_name'] = names[0]
-            values['last_name'] = names[-1]
+        if 'name' in values and ('last_name' in values or 'first_name' in values):
+            # prefer name construction over decomposition, i.e. construct full name from parts if they are present:
+            del values['name']
+        elif not ('name' in values or 'last_name' in values or 'first_name' in values):
+            raise ValidationError("First and last names are required")
         return super().create(values)

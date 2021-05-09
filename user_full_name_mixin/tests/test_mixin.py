@@ -1,6 +1,6 @@
 from odoo.tests import tagged, TransactionCase
 
-from ..lib.format import format_name
+from ..lib.format import format_name, decompose_name
 from parameterized import parameterized
 
 
@@ -36,3 +36,12 @@ class TestMixin(TransactionCase):
 
         p.write({'first_name': last, 'last_name': first})
         self.assertEqual(format_name(last, first), p.name)
+
+    @parameterized.expand((
+            ("Jason Dean", "Jason", "Dean",),
+            ("Jason J Dean", "Jason J", "Dean",),
+            ("Jason J Dean Jr", "Jason J", "Dean Jr",),
+            ("Jason Michael Lawrence Dean Jr", "Jason Michael Lawrence", "Dean Jr",),
+    ))
+    def test_decompose(self, name, first, last):
+        self.assertTupleEqual((first, last), decompose_name(name))
