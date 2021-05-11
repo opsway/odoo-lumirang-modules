@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="errorception_assets" name="ErrorCeption assets" inherit_id="web.frontend_layout">
+        <xpath expr="//head/script[1]" position="after">
+            <t t-set="is_using_errorception"
+               t-value="request.env['ir.config_parameter'].sudo().get_param('errorception.is_enabled')"/>
+            <script type="text/javascript" t-if="is_using_errorception">
+                <t t-set="errorception_key"
+                   t-value="request.env['ir.config_parameter'].sudo().get_param('errorception.access_key')"/>
+                (function(_,e,rr,s){_errs=[s];var c=_.onerror;_.onerror=function(){var a=arguments;_errs.push(a);
+                if(c){c.apply(this,a)}};var b=function(){var c=e.createElement(rr),b=e.getElementsByTagName(rr)[0];
+                c.src='//beacon.errorception.com/'+s+'.js';c.async=!0;b.parentNode.insertBefore(c,b)};
+                _.addEventListener?_.addEventListener('load',b,!1):_.attachEvent('onload',b)})
+                (window,document,'script','<t t-esc="errorception_key"/>');
+            </script>
+        </xpath>
+    </template>
+</odoo>
