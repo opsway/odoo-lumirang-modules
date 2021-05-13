@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="errorception_assets" name="ErrorCeption assets" inherit_id="web.frontend_layout">
+    <template id="errorception_assets" name="errorception assets" inherit_id="web.frontend_layout">
         <xpath expr="//head/script[1]" position="after">
             <t t-set="is_using_errorception"
                t-value="request.env['ir.config_parameter'].sudo().get_param('errorception.is_enabled')"/>
@@ -13,6 +13,14 @@
                 _.addEventListener?_.addEventListener('load',b,!1):_.attachEvent('onload',b)})
                 (window,document,'script','<t t-esc="errorception_key"/>');
             </script>
+        </xpath>
+    </template>
+    <template id="assets" name="frontend assets" inherit_id="web.assets_frontend">
+        <xpath expr="//script[@src='/web/static/src/js/public/public_crash_manager.js']" position="after">
+            <t t-set="is_using_errorception"
+               t-value="request.env['ir.config_parameter'].sudo().get_param('errorception.is_enabled')"/>
+            <script type="text/javascript" src="/errorception/static/src/js/crash_manager.js"
+                    t-if="is_using_errorception"/>
         </xpath>
     </template>
 </odoo>
