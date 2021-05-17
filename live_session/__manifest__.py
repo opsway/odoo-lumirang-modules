@@ -1,9 +1,9 @@
 {
-    'name': "ErrorCeption",
+    'name': "LiveSession",
 
-    'summary': "ErrorCeption Integration",
+    'summary': "LiveSession Integration",
 
-    'description': "Add ErrorCeption code to the frontend.",
+    'description': "Add LiveSession JS code.",
 
     'author': "Artem Shelest",
     'website': "http://www.lumirang.com",
