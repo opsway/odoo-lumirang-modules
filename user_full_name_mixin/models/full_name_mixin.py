@@ -6,6 +6,7 @@ from ..lib.format import format_name, decompose_name
 
 class FullNameMixin(models.AbstractModel):
     _name = 'full.name.mixin'
+    _description = "Mixin for first and last names"
 
     first_name = fields.Char(string="First name")
     last_name = fields.Char(string="Last name")

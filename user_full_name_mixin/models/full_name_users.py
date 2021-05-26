@@ -4,6 +4,7 @@ from odoo import api, models, fields
 # This model requires partner with the 'full.name.mixin' in the inheritance list
 class FullNameUsers(models.AbstractModel):
     _name = 'full.name.user'
+    _description = "User with first and last names"
 
     first_name = fields.Char(string="First name", related='partner_id.first_name', inherited=True, readonly=False)
     last_name = fields.Char(string="Last name", related='partner_id.last_name', inherited=True, readonly=False)

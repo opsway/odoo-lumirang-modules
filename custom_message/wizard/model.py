@@ -1,10 +1,9 @@
 from odoo import models, fields, api
 
-CUSTOM_MESSAGE_WIZARD_MODEL = 'custom_message.wizard'
-
 
 class CustomMessageWizard(models.TransientModel):
-    _name = CUSTOM_MESSAGE_WIZARD_MODEL
+    _name = 'custom_message.wizard'
+    _description = "Custom Message Wizard"
 
     text = fields.Text('Message', readonly=True)
 
@@ -15,7 +14,7 @@ class CustomMessageWizard(models.TransientModel):
             'name': title,
             'type': "ir.actions.act_window",
             'view_mode': 'form',
-            'res_model': CUSTOM_MESSAGE_WIZARD_MODEL,
+            'res_model': 'custom_message.wizard',
             'res_id': wizard_id.id,
             'target': 'new'
         }
