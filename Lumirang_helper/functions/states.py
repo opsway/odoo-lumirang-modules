@@ -1,7 +1,6 @@
-import re
 from typing import List, Iterable
 
-SPLIT_REGEX = re.compile(r"[\s_]+")
+from .auto_attr import SPLIT_REGEX
 
 
 def make_states(states: Iterable[str]) -> List[tuple]:

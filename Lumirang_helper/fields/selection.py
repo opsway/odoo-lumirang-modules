@@ -1,30 +1,26 @@
 import re
 
-from ..functions.states import SPLIT_REGEX
+from ..functions.auto_attr import AutoAttr,SPLIT_REGEX
 
 
 class StateValue(str):
     string = None
 
 
-class State:
+class State(AutoAttr):
     def __init__(self, string=None):
-        self._string = string
-        self._name = None
-        self._value = None
+        super().__init__()
+        self.string = string
 
-    def __get__(self, instance, owner):
-        if self._value is None:
-            if self._string is None:
-                string = " ".join(y.capitalize() for y in SPLIT_REGEX.split(self._name))
-            else:
-                string = self._string
-            self._value = StateValue(self._name)
-            self._value.string = string
-        return self._value
+    def _create_value(self):
+        if self.string is None:
+            self.string = " ".join(y.capitalize() for y in SPLIT_REGEX.split(self.name))
+        value = StateValue(self.name)
+        value.string = self.string
+        return value
 
     def __set_name__(self, owner, name):
-        self._name = name.lower()
+        self.name = name.lower()
 
 
 class SelectionStates:

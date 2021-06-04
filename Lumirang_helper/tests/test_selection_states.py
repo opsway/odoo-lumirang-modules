@@ -13,10 +13,8 @@ class TestSelectionStates(unittest.TestCase):
             SECOND = State()
             OVERRIDDEN = State(string=alt_name)
 
-        self.assertEqual("test", States.TEST)
-        self.assertEqual("second", States.SECOND)
         self.assertListEqual([
-            (States.TEST, "Test",),
-            (States.SECOND, "Second",),
-            (States.OVERRIDDEN, alt_name),
+            ('test', "Test",),
+            ('second', "Second",),
+            ('overridden', alt_name),
         ], States.states())
