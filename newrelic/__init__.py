@@ -1,11 +1,14 @@
 # -*- encoding: UTF-8 -*-
-from . import controllers
+from . import controllers, models
+import os
 
 from logging import getLogger
+
 _logger = getLogger(__name__)
 
 try:
     import odoo
+
     target = odoo.service.server.server
 
     try:
@@ -19,15 +22,16 @@ try:
         import odoo.tools.config as config
         import newrelic.agent
 
-
+        env_value = os.environ.get('ODOO_STAGE', "dev")
         try:
-            newrelic.agent.initialize(config['new_relic_config_file'], config['new_relic_environment'])
+            dirname = os.path.dirname(__file__)
+            newrelic.agent.initialize(os.path.join(dirname, 'newrelic.ini'), env_value)
         except KeyError:
             try:
-                newrelic.agent.initialize(config['new_relic_config_file'])
+                newrelic.agent.initialize(config['new_relic_config_file'], env_value)
             except KeyError:
                 _logger.info('NewRelic setting up from env variables')
-                newrelic.agent.initialize()
+                newrelic.agent.initialize(environment=env_value)
 
         # Main WSGI Application
         target._nr_instrumented = True
@@ -37,6 +41,7 @@ try:
         target = odoo.service.wsgi_server
         target.application_unproxied = newrelic.agent.WSGIApplicationWrapper(target.application_unproxied)
 
+
         # Error handling
         def should_ignore(exc, value, tb):
             from werkzeug.exceptions import HTTPException
@@ -45,9 +50,9 @@ try:
             # user code if they mix Odoo with Werkzeug. Filter based on the
             # HTTP status code.
 
-            if isinstance(value, HTTPException):
-                if newrelic.agent.ignore_status_code(value.code):
-                    return True
+            if isinstance(value, HTTPException) and newrelic.agent.ignore_status_code(value.code):
+                return True
+
 
         def _nr_wrapper_handle_exception_(wrapped):
             def _handle_exception(*args, **kwargs):
@@ -64,9 +69,8 @@ try:
 
             return _handle_exception
 
+
         target = odoo.http.WebRequest
         target._handle_exception = _nr_wrapper_handle_exception_(target._handle_exception)
-
-
 except ImportError:
     _logger.warn('newrelic python module not installed or other missing module')

@@ -8,5 +8,10 @@
     'category': 'Tool',
     'depends': [
         'web',
+        'base_setup',
     ],
+    'data': [
+        'views/res_config_settings.xml',
+        'views/assets.xml',
+    ]
 }
