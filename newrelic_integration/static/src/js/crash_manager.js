@@ -44,31 +44,6 @@ odoo.define('newrelic.CrashManager', function (require) {
                 }
                 oldError.apply(null, arguments);
             };
-            core.bus.on('crash_manager_unhandledrejection', this, function (ev) {
-                if (ev.reason && ev.reason instanceof Error) {
-                    let traceback;
-                    if (isBrowserChrome()) {
-                        traceback = ev.reason.stack;
-                    } else {
-                        traceback = `${_t("Error:")} ${ev.reason.message}\n${ev.reason.stack}`;
-                    }
-                    self.show_error({
-                        type: _t("Odoo Client Error"),
-                        message: '',
-                        data: {debug: _t('Traceback:') + "\n" + traceback},
-                        skipNewrelic: true,
-                    });
-                    if (window.newrelic) {
-                        newrelic.noticeError(ev.reason);
-                    }
-                } else {
-                    // the rejection is not due to an Error, so prevent the browser
-                    // from displaying an 'unhandledrejection' error in the console
-                    ev.stopPropagation();
-                    ev.stopImmediatePropagation();
-                    ev.preventDefault();
-                }
-            });
         },
         show_error(error) {
             if (window.newrelic && !error.skipNewrelic) {
