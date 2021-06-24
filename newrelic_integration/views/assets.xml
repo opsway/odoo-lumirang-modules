@@ -20,7 +20,7 @@
                t-value="request.env['res.config.settings'].has_newrelic()"/>
             <t t-set="is_using_newrelic"
                t-value="request.env['ir.config_parameter'].sudo().get_param('newrelic.is_enabled')"/>
-            <script type="text/javascript" src="/newrelic/static/src/js/public_crash_manager.js"
+            <script type="text/javascript" src="/newrelic_integration/static/src/js/public_crash_manager.js"
                     t-if="has_newrelic and is_using_newrelic"/>
         </xpath>
     </template>
@@ -30,7 +30,17 @@
                t-value="request.env['res.config.settings'].has_newrelic()"/>
             <t t-set="is_using_newrelic"
                t-value="request.env['ir.config_parameter'].sudo().get_param('newrelic.is_enabled')"/>
-            <script type="text/javascript" src="/newrelic/static/src/js/crash_manager.js"
+            <script type="text/javascript" src="/newrelic_integration/static/src/js/crash_manager.js"
+                    t-if="has_newrelic and is_using_newrelic"/>
+        </xpath>
+    </template>
+    <template id="crash_manager_service" name="crash manager service" inherit_id="web.assets_backend">
+        <xpath expr="//script[@src='/web/static/src/js/services/crash_manager_service.js']" position="after">
+            <t t-set="has_newrelic"
+               t-value="request.env['res.config.settings'].has_newrelic()"/>
+            <t t-set="is_using_newrelic"
+               t-value="request.env['ir.config_parameter'].sudo().get_param('newrelic.is_enabled')"/>
+            <script type="text/javascript" src="/newrelic_integration/static/src/js/crash_manager_service.js"
                     t-if="has_newrelic and is_using_newrelic"/>
         </xpath>
     </template>
