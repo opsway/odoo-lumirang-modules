@@ -1,4 +1,6 @@
 # -*- encoding: UTF-8 -*-
+from newrelic.api.exceptions import ConfigurationError
+
 from . import controllers, models
 import os
 
@@ -27,10 +29,11 @@ try:
         try:
             dirname = os.path.dirname(__file__)
             newrelic.agent.initialize(os.path.join(dirname, 'newrelic.ini'), env_value)
-        except KeyError:
+        except (KeyError, ConfigurationError, OSError):
             try:
+                _logger.info('NewRelic setting up from odoo config')
                 newrelic.agent.initialize(config['new_relic_config_file'], env_value)
-            except KeyError:
+            except (KeyError, ConfigurationError, OSError):
                 _logger.info('NewRelic setting up from env variables')
                 newrelic.agent.initialize(environment=env_value)
 
