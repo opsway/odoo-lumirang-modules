@@ -23,6 +23,7 @@ try:
         import newrelic.agent
 
         env_value = os.environ.get('ODOO_STAGE', "dev")
+        _logger.info("NewRelic environment is {}".format(env_value))
         try:
             dirname = os.path.dirname(__file__)
             newrelic.agent.initialize(os.path.join(dirname, 'newrelic.ini'), env_value)
