@@ -17,6 +17,11 @@ odoo.define('js_errors_log.CrashManager', function (require) {
                 name,
                 message: error.message,
                 data: JSON.stringify(error.data),
+                width: window.screen.width,
+                height: window.screen.height,
+                client_width: document.documentElement.clientWidth,
+                client_height: document.documentElement.clientHeight,
+                pixel_ratio: window.devicePixelRatio,
             });
         } catch (e) {
             console.error("Error reporting failed", e);
