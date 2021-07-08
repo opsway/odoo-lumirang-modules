@@ -20,10 +20,23 @@
             <form string="JS Errors" create="false" edit="false">
                 <sheet>
                     <group>
-                        <field name="error_type_id"/>
-                        <field name="message"/>
-                        <field name="user_id"/>
-                        <field name="create_date"/>
+                        <group>
+                            <field name="error_type_id"/>
+                            <field name="message"/>
+                            <field name="user_id"/>
+                            <field name="create_date"/>
+                            <field name="remote_addr"/>
+                        </group>
+                        <group>
+                            <field name="width"/>
+                            <field name="height"/>
+                            <field name="client_width"/>
+                            <field name="client_height"/>
+                            <field name="pixel_ratio"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="headers"/>
                         <field name="data"/>
                     </group>
                 </sheet>
