@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="crash_manager_be" name="crash manager be" inherit_id="web.assets_common">
+        <xpath expr="//script[@src='/web/static/src/js/services/crash_manager.js']" position="after">
+            <script type="text/javascript" src="/js_errors_log/static/src/js/crash_manager.js"/>
+        </xpath>
+    </template>
+</odoo>

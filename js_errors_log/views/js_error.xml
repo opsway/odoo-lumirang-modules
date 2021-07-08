@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tree_js_errors" model="ir.ui.view">
+        <field name="name">js.error.tree</field>
+        <field name="model">js.error</field>
+        <field name="arch" type="xml">
+            <tree string="JS Errors" create="false">
+                <field name="error_type_id"/>
+                <field name="message"/>
+                <field name="user_id"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="form_js_errors" model="ir.ui.view">
+        <field name="name">js.error.form</field>
+        <field name="model">js.error</field>
+        <field name="arch" type="xml">
+            <form string="JS Errors" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <field name="error_type_id"/>
+                        <field name="message"/>
+                        <field name="user_id"/>
+                        <field name="create_date"/>
+                        <field name="data"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_js_errors" model="ir.actions.act_window">
+        <field name="name">JS Errors</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">js.error</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_js_errors"
+              name="JS Errors"
+              action="action_js_errors"
+              parent="base.menu_custom"
+              sequence="100"
+              groups="base.group_no_one"/>
+</odoo>

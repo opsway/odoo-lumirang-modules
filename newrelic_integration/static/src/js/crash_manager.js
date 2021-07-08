@@ -4,11 +4,7 @@ odoo.define('newrelic.CrashManager', function (require) {
     const core = require('web.core');
     const {CrashManager} = require('web.CrashManager');
     const _t = core._t;
-
-    function isBrowserChrome() {
-        return $.browser.chrome && navigator.userAgent.toLocaleLowerCase().indexOf('edge') === -1;
-    }
-
+    
     const CrashManagerExtension = {
         init() {
             let oldError = window.onerror;
@@ -28,6 +24,7 @@ odoo.define('newrelic.CrashManager', function (require) {
                                     "JavaScript file served from a different origin. (Opening your browser console " +
                                     "might give you a hint on the error.)")
                             },
+                            skipNewrelic: true,
                         });
                     }
                 } else {

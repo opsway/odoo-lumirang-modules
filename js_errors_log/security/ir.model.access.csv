@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+js_error,js.error admin,model_js_error,base.group_no_one,1,1,1,1
+js_error_type,js.error.type admin,model_js_error_type,base.group_no_one,1,1,1,1
