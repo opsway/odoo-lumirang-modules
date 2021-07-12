@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_obsolete_asset_bundle_public,obsolete asset bundle public,model_obsolete_asset_bundle,base.group_public,1,0,0,0
 access_obsolete_asset_bundle_user,obsolete asset bundle user,model_obsolete_asset_bundle,base.group_user,1,0,0,0
 access_obsolete_asset_bundle_portal,obsolete asset bundle portal,model_obsolete_asset_bundle,base.group_portal,1,0,0,0
 access_obsolete_asset_bundle,obsolete asset bundle admin,model_obsolete_asset_bundle,base.group_no_one,1,1,1,1
