@@ -1,6 +1,6 @@
 import re
 
-from ..functions.auto_attr import AutoAttr,SPLIT_REGEX
+from ..functions.auto_attr import AutoAttr, SPLIT_REGEX
 
 
 class StateValue(str):
@@ -24,7 +24,7 @@ class State(AutoAttr):
 
 
 class SelectionStates:
-    _VALID_STATE_REGEX = re.compile(r"^[A-Z][A-Z_]+$")
+    _VALID_STATE_REGEX = re.compile(r"^[A-Z0-9][A-Z0-9_]+$")
 
     @classmethod
     def states(cls):
